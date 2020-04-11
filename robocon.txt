@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+int XX[4] = { 1,0,-1,0 };
+int YY[4] = { 0,1,0,-1 };
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase, n, m;
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> n >> m;
+		int A[105][105];
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				cin >> A[i][j];
+			}
+		}
+		int* x = new int[m];
+		int* y = new int[m];
+		for (int i = 0; i < m; i++)
+		{
+			cin >> x[i];
+		}
+		for (int j = 0; j < m; j++)
+		{
+			cin >> y[j];
+		}
+		int rX = 0, cX = 0, rY = n - 1, cY = n - 1;
+		int directX = 0, directY = 2;
+		int sumX = 0, sumY = 0;
+		for (int i = 0; i < m; i++)
+		{
+			if (x[i] == 1) directX = (directX + 1) % 4;
+			else if (x[i] == 2)
+			{
+				if (directX == 0) directX = 3;
+				else directX -= 1;
+			}
+			else
+			{
+				rX += XX[directX];
+				cX += YY[directX];
+			}
+			if (y[i] == 1) directY = (directY + 1) % 4;
+			else if (y[i] == 2)
+			{
+				if (directY == 0) directY = 3;
+				else directY -= 1;
+			}
+			else
+			{
+				rY += XX[directY];
+				cY += YY[directY];
+			}
+			//Neu 2 qua huc nhau
+			if (rX == rY && cX == cY) break;
+			else
+			{
+				sumX += A[rX][cX];
+				sumY += A[rY][cY];
+				A[rX][cX] = 0;
+				A[rY][cY] = 0;
+			}
+		}
+		cout << sumX << " " << sumY << endl;
+	}
+	return 0;
+}

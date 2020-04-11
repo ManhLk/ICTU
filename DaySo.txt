@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int* A;
+void quickSort(int l, int r)
+{
+	int pivot = A[(l + r) / 2];
+	int i = l;
+	int j = r;
+	while (i <= j)
+	{
+		while (pivot < A[i])i++;
+		while (pivot > A[j]) j--;
+		if (i <= j)
+		{
+			int tmpt = A[i];
+			A[i] = A[j];
+			A[j] = tmpt;
+			i++; j--;
+		}
+	}
+	if (l < j) quickSort(l, j);
+	if (r > i) quickSort(i, r);
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int n;
+	cin >> n;
+	A = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		cin >> A[i];
+	}
+	quickSort(0,n-1);
+	cout << A[2] + 2 * A[1] + 3 * A[0] << endl;
+	return 0;
+}

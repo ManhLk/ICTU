@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+int A[805][805];
+bool checkK(int r, int c, int k)
+{
+	for (int i = r; i < k + r; i++)
+	{
+		for (int j = c; j < k + c; j++)
+		{
+			if (A[i][j] == 0) return false;
+		}
+	}
+	return true;
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int n, k, res = 0;
+	cin >> n >> k;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cin >> A[i][j];
+		}
+	}
+	for (int i = 0; i <= n - k; i++)
+	{
+		for (int j = 0; j <= n - k; j++)
+		{
+			if (checkK(i, j, k)) res += 1;
+		}
+	}
+	cout << res << endl;
+	return 0;
+}

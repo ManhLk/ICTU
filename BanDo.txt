@@ -1,0 +1,65 @@
+#include <stdio.h>
+struct toaDo
+{
+	int x, y;
+};
+int X[4] = {0,0,-1,1};
+int Y[4] = {1,-1,0,0};
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase, m, n;
+	scanf("%d", &testCase);
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		scanf("%d%d", &m, &n);
+		char A[100][100];
+		for (int i = 0; i < m; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				scanf("%c", &A[i][j]);
+			}
+		}
+		int vung = 0, nguoi = 0;
+		for (int i = 0; i < m; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (A[i][j] != '#')
+				{
+					vung += 1;
+					struct toaDo QQ[100];
+					int front = -1, rear = 0;
+					QQ[rear].x = i;
+					QQ[rear].y = j;
+					if (A[i][j] == '*') nguoi += 1;
+					A[i][j] = '#';
+					while (front != rear)
+					{
+						struct toaDo D;
+						front = (front + 1) % 100;
+						D.x = QQ[front].x;
+						D.y = QQ[front].y;
+						for (int direct = 0; direct < 4; direct++)
+						{
+							int u = D.x + X[direct];
+							int v = D.y + Y[direct];
+							if (A[u][v] != '#')
+							{
+								rear = (rear + 1) % 100;
+								QQ[rear].x = u;
+								QQ[rear].y = v;
+								if (A[u][v] == '*') nguoi += 1;
+								A[u][v] = '#';
+							}
+						}
+					}
+				}
+			}
+		}
+		double result = nguoi * 1.0 / vung;
+		printf("%.2f\n",result);
+	}
+	return 0;
+}

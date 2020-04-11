@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+struct toaDo
+{
+	int x, y;
+};
+int X[8] = { 0,-1,-1,-1,0,1,1,1 };
+int Y[8] = { -1,-1,0,1,1,1,0,-1 };
+int Bom[1005][1005];
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int n, k, r, c;
+	cin >> n >> k;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cin >> Bom[i][j];
+		}
+	}
+	for (int i = 0; i < k; i++)
+	{
+		cin >> r >> c;
+		struct toaDo QQ[1000];
+		int front = -1, rear = -1, res = 0;
+		if (Bom[r - 1][c - 1] == 0)
+		{
+			struct toaDo D;
+			D.x = r - 1;
+			D.y = c - 1;
+			rear = (rear + 1) % 1000;
+			QQ[rear] = D;
+			Bom[r - 1][c - 1] = -1;
+			res = 1;
+			while (front != rear)
+			{
+				struct toaDo E;
+				front = (front + 1) % 1000;
+				E.x = QQ[front].x;
+				E.y = QQ[front].y;
+				for (int j = 0; j < 8; j++)
+				{
+					int u = E.x + X[j];
+					int v = E.y + Y[j];
+					if (u >= 0 && u < n && v >= 0 && v < n && Bom[u][v] == 0)
+					{
+						rear = (rear + 1) % 1000;
+						QQ[rear].x = u;
+						QQ[rear].y = v;
+						Bom[u][v] = -1;
+						res += 1;
+					}
+				}
+			}
+			cout << res << endl;
+		}
+		else
+		{
+			cout << "0" << endl;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	long long int m, n, t, tu, mau;
+	cin >> m >> n >> t;
+	tu = n * m;
+	mau = m + 1;
+	if (tu % mau == 0)  cout << (tu / mau) * t;
+	else cout << (tu / mau + 1) * t;
+	return 0;
+}

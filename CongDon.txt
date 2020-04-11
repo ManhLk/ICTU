@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	double a, b;
+	cin >> a >> b;
+	long long int m, n, sum1, sum2, res, M = 1000000007;
+	if (a == (long)a) m = a - 1;
+	else m = (long)a;
+	n = (long)b;
+	sum1 = m * (m + 1) * (2 * m + 1) / 6;
+	sum1 %= M;
+	sum2 = n * (n + 1) * (2 * n + 1) / 6;
+	sum2 %= M;
+	res = sum2 - sum1;
+	cout << res;
+	return 0;
+}

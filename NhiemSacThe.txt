@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	char c1, c2;
+	cin >> c1 >> c2;
+	if (c1 == 'X' && c2 == 'X') cout << "NU" << endl;
+	else if (c1 == 'Y' && c2 == 'Y') cout << "FALSE" << endl;
+	else cout << "NAM" << endl;
+	return 0;
+}

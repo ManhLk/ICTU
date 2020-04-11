@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase, n, k;
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> n >> k;
+		int A[105][105];
+		int max = 0;
+		int min = 100000;
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				cin >> A[i][j];
+				if (A[i][j] > max) max = A[i][j];
+				if (A[i][j] < min) min = A[i][j];
+			}
+		}
+		int floor = min;
+		int X = min, Y = 100000005;
+		while (floor <= max)
+		{
+			int cost = 0;
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < n; j++)
+				{
+					if (A[i][j] < floor)
+					{
+						cost += (floor-A[i][j]) * 2 * k;
+					}
+					else if(A[i][j]>floor)
+					{
+						cost += (A[i][j] - floor) * k;
+					}
+				}
+			}
+			if (cost < Y)
+			{
+				Y = cost;
+				X = floor;
+			}
+			floor++;
+		}
+		cout << X << " " << Y << endl;
+	}
+	return 0;
+}

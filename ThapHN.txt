@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+int k, C[130];
+void tower(int n, char a, char b, char c)
+{
+	if (n == 1) { 
+		C[(int)a] -= 1; 
+		C[(int)b] += 1; 
+		k--;
+		if (k == 0)
+		{
+			cout << C[(int)'a'] << " " << C[(int)'b'] << " " << C[(int)'c'];
+			exit(0);
+		}
+	}
+	else
+	{
+		tower(n - 1, a, c, b);
+		tower(1, a, b, c);
+		tower(n - 1, c, b, a);
+	}
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int n;
+	cin >> n >> k;
+	char a = 'a';
+	char b = 'b';
+	char c = 'c';
+	C[(int)a] = n;
+	C[(int)b] = C[(int)c] = 0;
+	tower(n, a, b, c);
+	return 0;
+}

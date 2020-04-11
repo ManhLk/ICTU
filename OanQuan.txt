@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+long long A[1005];
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int n, k;
+	cin >> n >> k;
+	for (int i = 0; i < n; i++)
+	{
+		cin >> A[i];
+	}
+	long long amout = A[k - 1];
+	A[k - 1] = 0;
+	long long cc = amout / n;
+	amout -= n * cc;
+	for (int i = 0; i < n; i++)
+	{
+		A[i] += cc;
+	}
+	int index = k % n;
+	while (amout > 0)
+	{
+		A[index] += 1;
+		index = (index + 1) % n;
+		amout--;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << A[i] << " ";
+	}
+	return 0;
+}

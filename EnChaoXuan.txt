@@ -1,0 +1,83 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+long long A[101];
+bool check(int x, int Arr[100], int N)
+{
+	for (int i = 0; i <= N; i++)
+	{
+		if (x == Arr[i]) return false;
+	}
+	return true;
+}
+long long slove(int index)
+{
+	long long front = A[index - 1];
+	int F[100];
+	int indexF = -1;
+	while (front > 0)
+	{
+		F[++indexF] = front % 10;
+		front /= 10;
+	}
+	long long rear = 0;
+	int R[100];
+	int indexR = -1;
+	for (int i = 0; i <= indexF; i++)
+	{
+		if (i == indexF)
+		{
+			if (F[i] == 9)
+			{
+				R[++indexR] = 0;
+				while (!check(R[indexR], F, indexF))
+				{
+					R[indexR] += 1;
+				}
+				R[++indexR] = 1;
+				while (!check(R[indexR], F, indexF))
+				{
+					R[indexR] += 1;
+				}
+			}
+			else R[++indexR] = F[i] + 1;
+		}
+		else
+		{
+			R[++indexR] = 0;
+			while (!check(R[indexR], F, indexF))
+			{
+				R[indexR] += 1;
+			}
+		}
+	}
+	for (int i = indexR; i >= 0; i--)
+	{
+		rear += R[i] * pow(10, i);
+	}
+	return rear;
+}
+void initilize()
+{
+	for (int i = 0; i < 11; i++)
+	{
+		A[i] = i;
+	}
+	for (int i = 11; i < 101; i++)
+	{
+		A[i] = slove(i);
+	}
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase, n;
+	cin >> testCase;
+	initilize();
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> n;
+		cout << A[n] << endl;
+	}
+	return 0;
+}

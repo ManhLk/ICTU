@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+int n, res, Count;
+int A[55];
+int B[55];
+bool checkPrime(int x)
+{
+	if (x == 2) return true;
+	for (int i = 2; i <= x / 2; i++)
+	{
+		if (x % i == 0) return false;
+	}
+	return true;
+}
+void Try(int i)
+{
+	B[i] = 1;
+	Count++;
+	for (int j = 0; j < n; j++)
+	{
+		if (B[j] == 0 && checkPrime(A[i] + A[j]))
+		{
+			if (Count == n-1&&checkPrime(A[j]+A[0]))
+			{
+				res += 1;
+			}
+			else
+			{
+				Try(j);
+			}
+		}
+	}
+	B[i] = 0;
+	Count--;
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase;
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> n;
+		res = 0;
+		for (int i = 0; i < n; i++)
+		{
+			cin >> A[i];
+			B[i] = 0;
+		}
+		Count = 0;
+		Try(0);
+		cout << res << endl;
+	}
+	return 0;
+}

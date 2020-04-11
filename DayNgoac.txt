@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+int n, Count, A[21], B[3];
+void Try(int i)
+{
+	for (int j = 1; j < 3; j++)
+	{
+		A[i] = j;
+		B[j]++;
+		Count++;
+		if ((A[i] == 1 && B[1] <= n)|| (A[i] == 2 && B[2] <= B[1]))
+		{
+			Try(i + 1);
+		}
+		if (Count == n * 2&&(B[1]==B[2]))
+		{
+			for (int index = 0; index < 2 * n; index++)
+			{
+				if (A[index] == 1) cout << "(";
+				else cout << ")";
+			}
+			cout << endl;
+		}
+		Count--;
+		B[j]--;
+	}
+}
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	cin >> n;
+	B[2] = 0;
+	Count = A[0] = B[1] = 1;
+	Try(1);
+	return 0;
+}

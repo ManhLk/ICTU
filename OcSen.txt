@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	long long a, b, v, res=0;
+	cin >> a >> b >> v;
+	long long tu, mau;
+	tu = v - b;
+	mau = a - b;
+	if (tu % mau != 0) res = tu / mau + 1;
+	else res = tu / mau;
+	cout << res;
+	return 0;
+}

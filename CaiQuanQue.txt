@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	long K, N, M;
+	cin >> K >> N >> M;
+	int fN = 0;
+	double fM = 0;
+	long result = 0;
+	while (true)
+	{
+		fM = (K - N * fN) * 1.0 / M;
+		if (fM == (int)fM) {
+			result = fN + fM;
+			break;
+		}
+		if (fM < 0) {
+			result = -1;
+			break;
+		}
+		fN++;
+	}
+	cout << result << endl;
+	return 0;
+}

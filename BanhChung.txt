@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase;
+	string s;
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> s;
+		int len = s.length();
+		long id = 0, res = 0;
+		for (int i = 0; i < len; i++)
+		{
+			if (s[i] == 'C')
+			{
+				id += 1;
+				res += id;
+			}
+			else id = 0;
+		}
+		cout << res << endl;
+	}
+	return 0;
+}

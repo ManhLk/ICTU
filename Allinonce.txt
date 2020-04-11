@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase, A[6];
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			cin >> A[i];
+		}
+		double f = A[3] * A[4] * A[5] * 1.0 / ((A[0] - A[3]) * (A[1] - A[4]) * (A[2] - A[5]));
+		if (f == 1) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+	return 0;
+}

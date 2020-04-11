@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int x, testCase;
+	cin >> testCase;
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> x;
+		cout << (x + 1) * 2 - 1 << endl;
+	}
+	return 0;
+}

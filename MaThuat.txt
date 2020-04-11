@@ -1,0 +1,46 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+	//freopen("input.txt", "r", stdin);
+	int testCase;
+	string s;
+	cin >> testCase;
+	char c[5] = { 'a','e','i','o','u' };
+	for (int tc = 0; tc < testCase; tc++)
+	{
+		cin >> s;
+		int length = s.length();
+		int lengthI = length - 4;
+		int start=-1, end=-1, res=1000;
+		bool print = false;
+		for (int i = 0; i < lengthI; i++)
+		{
+			int index = 0, startTmpt = -1, endTmpt = -1;
+			bool finish = false;
+			for (int j = i; j < length; j++)
+			{
+				if (s[j] == c[index])
+				{
+					if (index == 0) startTmpt = j + 1;
+					if (index == 4) { endTmpt = j + 1; finish = true; break; }
+					index++;
+				}
+			}
+			if (finish)
+			{
+				if ((endTmpt - startTmpt) < res)
+				{
+					res = endTmpt - startTmpt;
+					start = startTmpt;
+					end = endTmpt;
+					print = true;
+				}
+			}
+		}
+		if (print) cout << start << " " << end << endl;
+		else cout << "-1 -1" << endl;
+	}
+	return 0;
+}
